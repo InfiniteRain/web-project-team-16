@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Database class for simpler query execution.
+ *
+ * @author David Lõssenko <lysenkodavid@gmail.com>
+ */
 class Database
 {
     /**
