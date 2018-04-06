@@ -2,6 +2,11 @@
 
 require_once __DIR__ . '/Database.php';
 
+/**
+ * Abstract model class.
+ *
+ * @author David Lõssenko <lysenkodavid@gmail.com>
+ */
 abstract class Model
 {
     /**

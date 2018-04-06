@@ -7,25 +7,19 @@ require_once __DIR__ . '/../Model.php';
  *
  * @author David Lõssenko <lysenkodavid@gmail.com>
  */
-class User extends Model
+class Speciality extends Model
 {
     /**
      * @var string Name of the table.
      */
-    protected static $table = 'SYSUSER';
+    protected static $table = 'SPECIALITY';
 
     /**
      * @var array List of column names.
      */
     protected static $columns = [
         'id',
-        'username',
-        'password',
-        'first_name',
-        'last_name',
-        'email',
-        'type',
-        'speciality'
+        'name'
     ];
 
     /**
