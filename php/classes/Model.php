@@ -7,17 +7,17 @@ abstract class Model
     /**
      * @var string
      */
-    protected $table;
+    protected static $table;
 
     /**
      * @var array
      */
-    protected $columns = [];
+    protected static $columns = [];
 
     /**
      * @var string
      */
-    protected $primaryKey = '';
+    protected static $primaryKey = '';
 
     /**
      * @var array
@@ -35,30 +35,64 @@ abstract class Model
     private $isNew;
 
     /**
-     * Model constructor.
+     * Returns an array of models filtered by a WHERE clause.
+     *
+     * @param $query
+     * @param $params
+     * @return array
+     * @throws PDOException
+     */
+    public static function where($query, $params = [])
+    {
+        $result = Database::query(
+            'SELECT * FROM ' . static::$table . ' WHERE ' . $query,
+            $params
+        );
+
+        $models = [];
+        foreach ($result as $row) {
+            $models[] = new User($row);
+        }
+
+        return $models;
+    }
+
+    /**
+     * Finds a model by its primary key.
      *
      * @param $id
+     * @return User
      * @throws Exception
      */
-    public function __construct($id = null)
+    public static function find($id)
     {
-        if (isset($id)) {
-            $result = Database::query(
-                "SELECT * FROM {$this->table} WHERE {$this->primaryKey}=?",
-                [$id]
-            );
+        $result = Database::query(
+            'SELECT * FROM ' . static::$table . ' WHERE ' . static::$primaryKey . '=?',
+            [$id]
+        );
 
-            if (!isset($result[0])) {
-                throw new Exception('Model not found.');
-            }
+        if (!isset($result[0])) {
+            throw new Exception('Model not found.');
+        }
 
-            foreach ($this->columns as $name) {
-                $this->originals[$name] = $result[0][$name];
+        return new User($result[0]);
+    }
+
+    /**
+     * Model constructor.
+     *
+     * @param array $vals
+     */
+    public function __construct(array $vals = null)
+    {
+        if ($vals !== null) {
+            foreach (static::$columns as $name) {
+                $this->originals[$name] = $vals[$name];
             }
 
             $this->isNew = false;
         } else {
-            foreach ($this->columns as $name) {
+            foreach (static::$columns as $name) {
                 $this->originals[$name] = null;
             }
 
@@ -75,8 +109,8 @@ abstract class Model
      */
     public function __set(string $name, $value)
     {
-        if (!in_array($name, $this->columns)) {
-            throw new Exception("Field '{$name}' was not found.");
+        if (!in_array($name, static::$columns)) {
+            throw new Exception("Column '{$name}' was not found.");
         }
 
         if ($value === $this->originals[$name]) {
@@ -95,8 +129,8 @@ abstract class Model
      */
     public function __get(string $name)
     {
-        if (!in_array($name, $this->columns)) {
-            throw new Exception("Field '{$name}' was not found.");
+        if (!in_array($name, static::$columns)) {
+            throw new Exception("Column '{$name}' was not found.");
         }
 
         if (isset($this->changed[$name])) {
@@ -124,10 +158,11 @@ abstract class Model
                 $setList[] = $key . '=?';
                 $paramList[] = $value;
             }
-            $paramList[] = $this->originals[$this->primaryKey];
+            $paramList[] = $this->originals[static::$primaryKey];
 
             Database::query(
-                "UPDATE {$this->table} SET " . implode(', ', $setList) . " WHERE {$this->primaryKey}=?",
+                'UPDATE ' . static::$table . ' SET ' . implode(', ', $setList) . ' WHERE '
+                    . static::$primaryKey . '=?',
                 $paramList
             );
         } else {
@@ -141,7 +176,7 @@ abstract class Model
             }
 
             Database::query(
-                "INSERT INTO {$this->table} (" . implode(', ', $colList) . ') '
+                'INSERT INTO ' . static::$table . ' (' . implode(', ', $colList) . ') '
                 . 'VALUES (' . implode(', ', $qm) . ')',
                 $valList
             );
@@ -154,11 +189,11 @@ abstract class Model
         }
 
         $result = Database::query(
-            "SELECT * FROM {$this->table} WHERE {$this->primaryKey}=?",
+            'SELECT * FROM ' . static::$table . ' WHERE ' . static::$primaryKey . '=?',
             [$id]
         );
 
-        foreach ($this->columns as $name) {
+        foreach (static::$columns as $name) {
             $this->originals[$name] = $result[0][$name];
         }
 

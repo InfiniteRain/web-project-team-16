@@ -18,7 +18,7 @@ class Session
 
         if (!isset(self::$user)) {
             try {
-                self::$user = new User($_SESSION['userId']);
+                self::$user = User::find($_SESSION['userId']);
             } catch (Exception $exception) {
                 return false;
             }
