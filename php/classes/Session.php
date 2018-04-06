@@ -1,10 +1,13 @@
 <?php
 
-require_once __DIR__ . '/User.php';
-require_once __DIR__ . './Database.php';
+require_once __DIR__ . '/models/User.php';
+require_once __DIR__ . '/Database.php';
 
 class Session
 {
+    /**
+     * @var User
+     */
     private static $user;
 
     public static function user()
