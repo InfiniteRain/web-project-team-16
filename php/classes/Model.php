@@ -10,27 +10,27 @@ require_once __DIR__ . '/Database.php';
 abstract class Model
 {
     /**
-     * @var string
+     * @var string Name of the table.
      */
     protected static $table;
 
     /**
-     * @var array
+     * @var array List of column names.
      */
     protected static $columns = [];
 
     /**
-     * @var string
+     * @var string Name of the primary key column.
      */
     protected static $primaryKey = '';
 
     /**
-     * @var array
+     * @var array Stores original column values (pre save()).
      */
     private $originals = [];
 
     /**
-     * @var array
+     * @var array Stores all the changes to the column values.
      */
     private $changed = [];
 
@@ -38,6 +38,11 @@ abstract class Model
      * @var boolean
      */
     private $isNew;
+
+    /**
+     * @var boolean
+     */
+    private $isDeleted;
 
     /**
      * Returns an array of models filtered by a WHERE clause.
@@ -103,6 +108,8 @@ abstract class Model
 
             $this->isNew = true;
         }
+
+        $this->isDeleted = false;
     }
 
     /**
@@ -114,6 +121,10 @@ abstract class Model
      */
     public function __set(string $name, $value)
     {
+        if ($this->isDeleted) {
+            throw new Exception('Model is deleted.');
+        }
+
         if (!in_array($name, static::$columns)) {
             throw new Exception("Column '{$name}' was not found.");
         }
@@ -134,6 +145,10 @@ abstract class Model
      */
     public function __get(string $name)
     {
+        if ($this->isDeleted) {
+            throw new Exception('Model is deleted.');
+        }
+
         if (!in_array($name, static::$columns)) {
             throw new Exception("Column '{$name}' was not found.");
         }
@@ -149,9 +164,14 @@ abstract class Model
      * Saves the changes to the user into the database.
      *
      * @throws PDOException
+     * @throws Exception
      */
     public function save()
     {
+        if ($this->isDeleted) {
+            throw new Exception('This model is deleted.');
+        }
+
         if (!$this->isNew) {
             if (count($this->changed) === 0) {
                 return;
@@ -167,7 +187,7 @@ abstract class Model
 
             Database::query(
                 'UPDATE ' . static::$table . ' SET ' . implode(', ', $setList) . ' WHERE '
-                    . static::$primaryKey . '=?',
+                . static::$primaryKey . '=?',
                 $paramList
             );
         } else {
@@ -204,5 +224,29 @@ abstract class Model
 
         $this->changed = [];
         $this->isNew = false;
+    }
+
+    /**
+     * Deletes the model.
+     *
+     * @throws Exception
+     * @throws PDOException
+     */
+    public function delete()
+    {
+        if ($this->isNew) {
+            throw new Exception('This model is not saved yet.');
+        }
+
+        if ($this->isDeleted) {
+            throw new Exception('This model is already deleted.');
+        }
+
+        Database::query(
+            'DELETE FROM ' . static::$table . ' WHERE ' . static::$primaryKey . '=?',
+            [$this->{static::$primaryKey}]
+        );
+
+        $this->isDeleted = true;
     }
 }
