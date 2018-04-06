@@ -31,19 +31,33 @@ class Database
     }
 
     /**
-     * Executes a query.
+     * Executes a query, accepts parameters as an array.
      *
      * @param string $query
-     * @param mixed ...$params
+     * @param array $params
      * @return array
      * @throws PDOException
      */
-    public static function query(string $query, ...$params)
+    public static function query(string $query, array $params)
     {
         self::connect();
 
         $statement = self::$connection->prepare($query);
         $statement->execute($params);
-        return $statement->fetchAll(PDO::FETCH_ASSOC);
+        if ($statement->columnCount() > 0) {
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
+        } else {
+            return [];
+        }
+    }
+
+    /**
+     * Returns the last insert ID.
+     *
+     * @return string
+     */
+    public static function lastInsertId()
+    {
+        return self::$connection->lastInsertId();
     }
 }
