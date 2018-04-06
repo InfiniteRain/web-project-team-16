@@ -38,7 +38,7 @@ class Database
      * @return array
      * @throws PDOException
      */
-    public static function query(string $query, array $params)
+    public static function query(string $query, array $params = [])
     {
         self::connect();
 

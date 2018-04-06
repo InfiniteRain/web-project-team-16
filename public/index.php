@@ -38,4 +38,8 @@ echo $newUser->first_name . ' ';
 echo $newUser->last_name . ' ';
 echo ($newUser->id === null ? 'null' : $newUser->id) . '<br>';
 
+foreach (User::where('id > 1') as $m) {
+    echo $m->username . '<br>';
+}
+
 ?>
