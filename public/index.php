@@ -1,4 +1,4 @@
-<?php require_once __DIR__ . '/../php/header.php'; ?>
+<?php require_once __DIR__ . '/../app/header.php'; ?>
 
 <?php if (!Session::user()): ?>
     <h1>User is not logged in</h1>
