@@ -161,7 +161,7 @@ abstract class Model
     }
 
     /**
-     * Saves the changes to the user into the database.
+     * Saves the changes to the model into the database.
      *
      * @throws PDOException
      * @throws Exception
