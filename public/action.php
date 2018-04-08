@@ -2,6 +2,9 @@
 
 require_once __DIR__ . '/../app/header.php';
 
+use WebTech\Hospital\Models\User;
+use WebTech\Hospital\Session;
+
 switch ($_POST['action']) {
     case 'register':
         try {
