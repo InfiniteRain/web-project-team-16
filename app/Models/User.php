@@ -1,25 +1,33 @@
 <?php
 
-require_once __DIR__ . '/../Model.php';
+namespace WebTech\Hospital\Models;
+
+use WebTech\Hospital\Model;
 
 /**
  * User model.
  *
  * @author David Lõssenko <lysenkodavid@gmail.com>
  */
-class Speciality extends Model
+class User extends Model
 {
     /**
      * @var string Name of the table.
      */
-    protected static $table = 'SPECIALITY';
+    protected static $table = 'SYSUSER';
 
     /**
      * @var array List of column names.
      */
     protected static $columns = [
         'id',
-        'name'
+        'username',
+        'password',
+        'first_name',
+        'last_name',
+        'email',
+        'type',
+        'speciality'
     ];
 
     /**

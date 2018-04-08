@@ -1,6 +1,8 @@
 <?php
 
-require_once __DIR__ . '/../Model.php';
+namespace WebTech\Hospital\Models;
+
+use WebTech\Hospital\Model;
 
 /**
  * Type model.

@@ -1,5 +1,7 @@
 <?php
 
+namespace WebTech\Hospital;
+
 /**
  * Database class for simpler query execution.
  *
@@ -10,14 +12,14 @@ class Database
     /**
      * PDO object representing the connection.
      *
-     * @var PDO
+     * @var \PDO
      */
     private static $connection;
 
     /**
      * Connects to the database.
      *
-     * @throws PDOException
+     * @throws \PDOException
      */
     private static function connect()
     {
@@ -25,13 +27,13 @@ class Database
             return;
         }
 
-        $connection = new PDO(
+        $connection = new \PDO(
             'mysql:host=' . CONFIG['host'] . ';dbname=' . CONFIG['dbname'],
             CONFIG['username'],
             CONFIG['password']
         );
 
-        $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $connection->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         self::$connection = $connection;
     }
 
@@ -41,7 +43,7 @@ class Database
      * @param string $query
      * @param array $params
      * @return array
-     * @throws PDOException
+     * @throws \PDOException
      */
     public static function query(string $query, array $params = [])
     {
@@ -50,7 +52,7 @@ class Database
         $statement = self::$connection->prepare($query);
         $statement->execute($params);
         if ($statement->columnCount() > 0) {
-            return $statement->fetchAll(PDO::FETCH_ASSOC);
+            return $statement->fetchAll(\PDO::FETCH_ASSOC);
         } else {
             return [];
         }

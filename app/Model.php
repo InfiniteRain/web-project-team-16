@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/Database.php';
+namespace WebTech\Hospital;
 
 /**
  * Abstract model class.
@@ -50,7 +50,7 @@ abstract class Model
      * @param $query
      * @param $params
      * @return array
-     * @throws PDOException
+     * @throws \PDOException
      */
     public static function where($query, $params = [])
     {
@@ -61,7 +61,7 @@ abstract class Model
 
         $models = [];
         foreach ($result as $row) {
-            $models[] = new User($row);
+            $models[] = new static($row);
         }
 
         return $models;
@@ -71,8 +71,8 @@ abstract class Model
      * Finds a model by its primary key.
      *
      * @param $id
-     * @return User
-     * @throws Exception
+     * @return Model
+     * @throws \Exception
      */
     public static function find($id)
     {
@@ -82,10 +82,10 @@ abstract class Model
         );
 
         if (!isset($result[0])) {
-            throw new Exception('Model not found.');
+            throw new \Exception('Model not found.');
         }
 
-        return new User($result[0]);
+        return new static($result[0]);
     }
 
     /**
@@ -117,16 +117,16 @@ abstract class Model
      *
      * @param string $name
      * @param $value
-     * @throws Exception
+     * @throws \Exception
      */
     public function __set(string $name, $value)
     {
         if ($this->isDeleted) {
-            throw new Exception('Model is deleted.');
+            throw new \Exception('Model is deleted.');
         }
 
         if (!in_array($name, static::$columns)) {
-            throw new Exception("Column '{$name}' was not found.");
+            throw new \Exception("Column '{$name}' was not found.");
         }
 
         if ($value === $this->originals[$name]) {
@@ -141,16 +141,16 @@ abstract class Model
      *
      * @param string $name
      * @return mixed
-     * @throws Exception
+     * @throws \Exception
      */
     public function __get(string $name)
     {
         if ($this->isDeleted) {
-            throw new Exception('Model is deleted.');
+            throw new \Exception('Model is deleted.');
         }
 
         if (!in_array($name, static::$columns)) {
-            throw new Exception("Column '{$name}' was not found.");
+            throw new \Exception("Column '{$name}' was not found.");
         }
 
         if (isset($this->changed[$name])) {
@@ -163,13 +163,13 @@ abstract class Model
     /**
      * Saves the changes to the model into the database.
      *
-     * @throws PDOException
-     * @throws Exception
+     * @throws \PDOException
+     * @throws \Exception
      */
     public function save()
     {
         if ($this->isDeleted) {
-            throw new Exception('This model is deleted.');
+            throw new \Exception('This model is deleted.');
         }
 
         if (!$this->isNew) {
@@ -229,17 +229,17 @@ abstract class Model
     /**
      * Deletes the model.
      *
-     * @throws Exception
-     * @throws PDOException
+     * @throws \Exception
+     * @throws \PDOException
      */
     public function delete()
     {
         if ($this->isNew) {
-            throw new Exception('This model is not saved yet.');
+            throw new \Exception('This model is not saved yet.');
         }
 
         if ($this->isDeleted) {
-            throw new Exception('This model is already deleted.');
+            throw new \Exception('This model is already deleted.');
         }
 
         Database::query(
