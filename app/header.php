@@ -7,7 +7,7 @@ session_start();
 define('CONFIG', parse_ini_file('../config.ini'));
 
 // Necessary includes.
-require_once __DIR__ . '/classes/Database.php';
-require_once __DIR__ . '/classes/Session.php';
+require_once __DIR__ . '/Database.php';
+require_once __DIR__ . '/Session.php';
 
-require_once __DIR__ . '/classes/models/User.php';
+require_once __DIR__ . '/models/User.php';

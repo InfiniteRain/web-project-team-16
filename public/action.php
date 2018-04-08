@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../php/header.php';
+require_once __DIR__ . '/../app/header.php';
 
 switch ($_POST['action']) {
     case 'register':
