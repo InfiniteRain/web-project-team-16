@@ -22,8 +22,6 @@ spl_autoload_register(function ($class) {
 
     // If the file exists, require it.
     if (file_exists($filePath)) {
-
-
         require_once $filePath;
     }
 });
