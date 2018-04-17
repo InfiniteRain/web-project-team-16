@@ -4,6 +4,8 @@ require_once __DIR__ . '/../bootstrap/autoload.php';
 
 require_once __DIR__ . '/../bootstrap/app.php';
 
+require_once __DIR__ . '/../bootstrap/helpers.php';
+
 try {
     \WebTech\Hospital\Router::handle();
 } catch (\Exception $exception) {
