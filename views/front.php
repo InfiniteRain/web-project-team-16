@@ -58,6 +58,8 @@
     Username: <b><?= user()->username ?></b><br>
     First name: <b><?= user()->first_name ?></b><br>
     Last name: <b><?= user()->last_name ?></b><br>
+    Type: <b><?= user()->userType()->name ?></b><br>
+    Specialty: <b><?= user()->userSpeciality() !== null ? user()->userSpeciality()->name : 'null' ?></b><br>
     <hr>
     <h2>Logout</h2>
     <form action="/logout" method="get">
