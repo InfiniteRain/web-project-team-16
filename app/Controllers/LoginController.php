@@ -57,11 +57,11 @@ class LoginController extends Controller
         ]);
 
         $newUser = new User();
-        $newUser->username = $request['username'];
+        $newUser->username = trim($request['username']);
         $newUser->password = password_hash($request['password'], PASSWORD_BCRYPT);
-        $newUser->first_name = $request['first_name'];
-        $newUser->last_name = $request['last_name'];
-        $newUser->email = $request['email'];
+        $newUser->first_name = trim($request['first_name']);
+        $newUser->last_name = trim($request['last_name']);
+        $newUser->email = trim($request['email']);
         $newUser->type = 1;
         $newUser->save();
 

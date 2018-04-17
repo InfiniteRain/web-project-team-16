@@ -12,6 +12,16 @@ use WebTech\Hospital\Model;
 class User extends Model
 {
     /**
+     * @var Type
+     */
+    private $userType;
+
+    /**
+     * @var Speciality|null
+     */
+    private $userSpeciality;
+
+    /**
      * @var string Name of the table.
      */
     protected static $table = 'SYSUSER';
@@ -34,4 +44,33 @@ class User extends Model
      * @var string Name of the primary key column.
      */
     protected static $primaryKey = 'id';
+
+
+    /**
+     * Gets the type model of this user.
+     *
+     * @throws \Exception
+     */
+    public function userType()
+    {
+        if (!isset($this->userType)) {
+            $this->userType = Type::find($this->type);
+        }
+
+        return $this->userType;
+    }
+
+    /**
+     * Gets the specialty model of this user.
+     *
+     * @throws \Exception
+     */
+    public function userSpeciality()
+    {
+        if (!isset($this->userSpeciality) && $this->speciality !== null) {
+            $this->userSpeciality = Speciality::find($this->speciality);
+        }
+
+        return $this->userSpeciality;
+    }
 }
