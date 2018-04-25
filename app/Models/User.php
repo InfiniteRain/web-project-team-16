@@ -22,6 +22,22 @@ class User extends Model
     private $userSpeciality;
 
     /**
+     * This var is used only when the user is a DOCTOR.
+     * Meaning that this array stores the registered appointments with clients.
+     *
+     * @var array
+     */
+    private $appointmentsWithPatients;
+
+    /**
+     * This var is only used when the user is a PATIENT.
+     * Meaning that this array stores the registered appointments with doctors.
+     *
+     * @var array
+     */
+    private $appointmentsWithDoctors;
+
+    /**
      * @var string Name of the table.
      */
     protected static $table = 'SYSUSER';
@@ -72,5 +88,41 @@ class User extends Model
         }
 
         return $this->userSpeciality;
+    }
+
+    /**
+     * Gets appointments of a doctor.
+     *
+     * @throws \Exception
+     */
+    public function appointmentsWithPatients()
+    {
+        if ($this->userType()->id != 2) {
+            throw new \Exception('This user is not a doctor!');
+        }
+
+        if (!isset($this->appointmentsWithPatients)) {
+            $this->appointmentsWithPatients = Appointment::where('doctor=?', [$this->id]);
+        }
+
+        return $this->appointmentsWithPatients;
+    }
+
+    /**
+     * Gets appointments of a patient.
+     *
+     * @throws \Exception
+     */
+    public function appointmentsWithDoctors()
+    {
+        if ($this->userType()->id != 3) {
+            throw new \Exception('This user is not a patient!');
+        }
+
+        if (!isset($this->appointmentsWithDoctors)) {
+            $this->appointmentsWithDoctors = Appointment::where('patient=?', [$this->id]);
+        }
+
+        return $this->appointmentsWithDoctors;
     }
 }
