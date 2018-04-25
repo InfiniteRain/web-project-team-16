@@ -71,7 +71,7 @@ abstract class Model
      * Finds a model by its primary key.
      *
      * @param $id
-     * @return Model
+     * @return static
      * @throws \Exception
      */
     public static function find($id)
