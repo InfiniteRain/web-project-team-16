@@ -62,7 +62,7 @@ class LoginController extends Controller
         $newUser->first_name = trim($request['first_name']);
         $newUser->last_name = trim($request['last_name']);
         $newUser->email = trim($request['email']);
-        $newUser->type = 1;
+        $newUser->type = 3;
         $newUser->save();
 
         $this->redirectBack(['registerMsg' => "User {$newUser->username} was successfully registered."]);

@@ -60,6 +60,20 @@
     Last name: <b><?= user()->last_name ?></b><br>
     Type: <b><?= user()->userType()->name ?></b><br>
     Specialty: <b><?= user()->userSpeciality() !== null ? user()->userSpeciality()->name : 'null' ?></b><br>
+
+    <?php if (user()->userType()->name === 'patient'): ?>
+        <b>Appointments:</b><br>
+        <ul>
+        <?php foreach (user()->appointmentsWithDoctors() as $appointment): ?>
+            <li>
+                Appointment on
+                <?= $appointment->datetime ?> with Dr.
+                <?= $appointment->appointmentDoctor()->last_name ?>.
+            </li>
+        <?php endforeach; ?>
+        </ul>
+    <?php endif; ?>
+
     <hr>
     <h2>Logout</h2>
     <form action="/logout" method="get">
