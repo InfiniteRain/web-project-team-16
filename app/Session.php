@@ -74,4 +74,24 @@ class Session
 
         $_SESSION['userId'] = null;
     }
+
+    /**
+     * Sets redirection session data.
+     *
+     * @param array $data
+     */
+    public static function setRedirectData(array $data)
+    {
+        $_SESSION['redirect'] = $data;
+    }
+
+    /**
+     * Gets redirection session data.
+     *
+     * @return array
+     */
+    public static function getRedirectData()
+    {
+        return isset($_SESSION['redirect']) ? $_SESSION['redirect'] : [];
+    }
 }
