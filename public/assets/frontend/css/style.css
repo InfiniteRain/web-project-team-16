@@ -1,5 +1,5 @@
 body {
-	background-color: whitesmoke;
+    background-color: whitesmoke;
 }
 
 ul {
@@ -26,5 +26,16 @@ li a:hover {
     background-color: #111;
 }
 
+footer {
+    padding: 1em;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    color: black;
+    background-color: white;
+    clear: left;
+    text-align: center;
+    
+}
 
 
