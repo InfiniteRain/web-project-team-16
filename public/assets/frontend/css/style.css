@@ -4,6 +4,11 @@ body {
 
 }
 
+
+.content {
+    text-align: center;
+}
+
 ul {
     list-style-type: none;
     margin: 0;
@@ -98,10 +103,12 @@ input[type=time], select, textarea {
 .btn {
     border: none;
     color: white;
-    padding: 7px 14px;
-    font-size: 16px;
+    padding: 14px 28px;
+    font-size: 20px;
     cursor: pointer;
+    text-align: center;
 }
+
 
 .appointments {background-color:  #4665a0;} /* Green */
 .appointments:hover {background-color: #4665a0;}
