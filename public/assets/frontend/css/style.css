@@ -110,11 +110,17 @@ input[type=time], select, textarea {
 }
 
 
-.appointments {background-color:  #4665a0;} /* Green */
+.appointments {background-color:  #4665a0;} /* Blue */
 .appointments:hover {background-color: #4665a0;}
 
 .profile {background-color:  gray;} /* Green */
 .profile:hover {background-color: gray;}
+
+.Login {background-color:  #4665a0;} /* Blue */
+.Login:hover {background-color: #4665a0;}
+
+.Register {background-color:  #4665a0;} /* Blue */
+.Register:hover {background-color: #4665a0;}
 
 footer {
     padding: 0em;
