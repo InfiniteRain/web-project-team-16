@@ -19,24 +19,22 @@
       <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
       <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
     </div>
-    <div>
-        <br>
-      <h2> Book an an appointment:</h2>
-      <br>
+    <div>   
+      <h3> Book an appointment</h3>
       <div>
           <form action=".php">
-            <label for="Day">Day:</label>
-            <input type="date" id="Day" name="Day" placeholder="Day">
+            <label>Day:</label>
+            <input type="date" name="data[Day]" placeholder="Day">
             
-            <label for="Month">Month:</label>
-            <input type="date" id="Month" name="Month" placeholder="Month">
+            <label>Month:</label>
+            <input type="date" name="data[Month]" placeholder="Month">
 
-            <label for="Year">Year:</label>
-            <input type="date" id="Year" name="Year" placeholder="Year">
+            <label>Year:</label>
+            <input type="date" name="data[Year]" placeholder="Year">
             <br>
             <br>
-            <label for="Time">Time: </label>
-            <input type="time" id="Time" name="Time" placeholder="Time">
+            <label>Time:</label>
+            <input type="time" name="data[Time]" placeholder="Time">
             <br>
             <br>
             <input type="submit" value="Submit">
