@@ -11,22 +11,30 @@
     </ul>
     <div class="container">
 
-    <h1>Login:</h1>
+    <h1>::Profile::</h1>
     <br>
     <div>
+
         <form action=".php">
+          <label>First name:</label>
+          <input type="text" name="data[firstname]" value="">
+          <br>
+          <label >Last name:</label>
+          <input type="text" name="data[lastname]" value="">
+          <br>
           <label>Username:</label>
-          <input type="text" name="data[username]" placeholder="Your username">
+          <input type="text" name="data[username]" value="">
           <br>
           <label>Password: </label>
-          <input type="text" name="data[password]" placeholder="Your password">
+          <input type="text" name="data[password]" value="">
           <br>
+          <label>Password: </label>
+          <input type="text"  name="data[confirmpassword]" value="">
+          <br>
+          
+
           <br>
           <input type="submit" value="Submit">
-          <br>
-          <br>
-          <span class="psw">Forgot <a href="resetpassword.html">password?</a></span>
-
         </form>
       </div>
   
@@ -46,5 +54,4 @@
       <span class="contact">Tel: +xxx-xxxxxxx&nbsp;
       Email:xxx@xxxx.com</span>
    </footer>
-   
 </html>

@@ -1,6 +1,7 @@
 body {
-    margin: 0;
+    margin: 0 auto;
     background-color: whitesmoke;
+
 }
 
 ul {
@@ -27,10 +28,12 @@ li a:hover {
     background-color: #111;
 }
 
+
 .a-container {
     position: relative; 
     max-width: 800px; /* Maximum width */
     margin: 0 auto; /* Center it */
+
 }
 .a-container .content {
     position: absolute; /* Position the background text */
@@ -39,9 +42,12 @@ li a:hover {
     color: #f1f1f1; /* Grey text */
     width: 110%; /* Full width */
     padding: 20px; /* Some padding */
+
 }
 
-.a-container img {vertical-align: middle;}
+.a-container img {
+    vertical-align: middle;
+}
 
 
 .container {
@@ -52,6 +58,8 @@ li a:hover {
 
 input[type=submit]:hover {
     background-color: #45a049;
+    resize: vertical;
+   
 }
 
 input[type=text], select, textarea {
@@ -67,30 +75,44 @@ input[type=text], select, textarea {
 
 input[type=date], select, textarea {
     width: 100%;
-    padding: 5px;
+    padding: 12px;
     border: 1px solid #ccc;
-    border-radius: 2px;
+    border-radius: 4px;
     box-sizing: border-box;
-    margin-top: 0px;
-    margin-bottom: 0px;
+    margin-top: 6px;
+    margin-bottom: 16px;
     resize: vertical;
 }
 
 input[type=time], select, textarea {
     width: 100%;
-    padding: 5px;
+    padding: 12px;
     border: 1px solid #ccc;
-    border-radius: 0px;
+    border-radius: 4px;
     box-sizing: border-box;
-    margin-top: 0px;
-    margin-bottom: 0px;
+    margin-top: 6px;
+    margin-bottom: 16px;
     resize: vertical;
 }
 
+.btn {
+    border: none;
+    color: white;
+    padding: 7px 14px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.appointments {background-color:  #4665a0;} /* Green */
+.appointments:hover {background-color: #4665a0;}
+
+.profile {background-color:  gray;} /* Green */
+.profile:hover {background-color: gray;}
+
 footer {
     padding: 0em;
+    bottom: 0;
     position: absolute;
-    bottom: 0px;
     width: 100%;
     color: black;
     background-color: white;
@@ -98,5 +120,6 @@ footer {
     text-align: center;
     
 }
+
 
 
