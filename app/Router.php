@@ -63,10 +63,11 @@ class Router
         }
 
         if (!$rendered) {
-            throw new \Exception('Route matching GET -> ' . $uri . ' does not exist.');
+            throw new \Exception("Route matching {$_SERVER['REQUEST_METHOD']} -> {$uri} does not exist.");
         }
 
         self::$isHandled = true;
+        Session::setRedirectData([]);
     }
 
     /**
