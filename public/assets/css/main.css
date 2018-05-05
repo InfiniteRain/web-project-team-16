@@ -1,8 +1,7 @@
 
-body{
+body {
     margin: 0;
-    padding: 0;
-    background: url(img/banner.jpg);
+    /*background: url(/assets/img/banner.jpg);*/
     background-size: cover;
     background-position: center;
     font-family: sans-serif;
@@ -20,8 +19,12 @@ ul {
     background-color: #333;
 }
 
-li {
+li:not(.right) {
     float: left;
+}
+
+li.right {
+    float: right;
 }
 
 li a {
@@ -53,11 +56,12 @@ tr:nth-child(even) {
 }
 
 .a-container {
-    position: relative; 
+    position: relative;
     max-width: 800px; /* Maximum width */
     margin: 0 auto; /* Center it */
 
 }
+
 .a-container .content {
     position: absolute; /* Position the background text */
     bottom: 0; /* At the bottom. Use top:0 to append it to the top */
@@ -73,17 +77,13 @@ tr:nth-child(even) {
     background-size: contain;
 }
 
-
 .container {
     border-radius: 5px;
     background-color: #f2f2f2;
     padding: 20px;
 }
 
-
-
-input[type="submit"]
-{
+input[type="submit"] {
     border: none;
     outline: none;
     height: 40px;
@@ -91,10 +91,10 @@ input[type="submit"]
     color: #fff;
     font-size: 18px;
     border-radius: 20px;
+    padding: 0 15px 0 15px;
 }
 
-
-input[type=text], select, textarea {
+input[type=text], input[type=password], select, textarea {
     width: 100%;
     padding: 12px;
     border: 1px solid #ccc;
@@ -136,18 +136,41 @@ input[type=time], select, textarea {
     text-align: center;
 }
 
+.appointments {
+    background-color: #1c8adb;;
+}
 
-.appointments {background-color:  #1c8adb;;} /* Blue */
-.appointments:hover {background-color: #4665a0;}
+/* Blue */
+.appointments:hover {
+    background-color: #4665a0;
+}
 
-.profile {background-color:  #1c8adb;;} /* Green */
-.profile:hover {background-color: gray;}
+.profile {
+    background-color: #1c8adb;;
+}
 
-.Login {background-color:  #4665a0;} /* Blue */
-.Login:hover {background-color: #4665a0;}
+/* Green */
+.profile:hover {
+    background-color: gray;
+}
 
-.Register {background-color:  #4665a0;} /* Blue */
-.Register:hover {background-color: #4665a0;}
+.Login {
+    background-color: #4665a0;
+}
+
+/* Blue */
+.Login:hover {
+    background-color: #4665a0;
+}
+
+.Register {
+    background-color: #4665a0;
+}
+
+/* Blue */
+.Register:hover {
+    background-color: #4665a0;
+}
 
 footer {
     padding: 0em;
@@ -158,11 +181,10 @@ footer {
     background-color: white;
     clear: left;
     text-align: center;
-    
+
 }
 
-
-.login-box{
+.login-box {
     width: 320px;
     height: 420px;
     background: rgba(0, 0, 0, 0.5);
@@ -170,11 +192,12 @@ footer {
     top: 50%;
     left: 50%;
     position: absolute;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     box-sizing: border-box;
     padding: 70px 30px;
 }
-.avatar{
+
+.avatar {
     width: 100px;
     height: 100px;
     border-radius: 50%;
@@ -182,34 +205,35 @@ footer {
     top: -50px;
     left: calc(50% - 50px);
 }
-h1{
+
+h1 {
     margin: 0;
     padding: 0 0 20px;
     text-align: center;
     font-size: 22px;
 }
 
-.login-box p{
+.login-box p {
     margin: 0;
     padding: 0;
     font-weight: bold;
 }
-.login-box input{
+
+.login-box input {
     width: 100%;
     margin-bottom: 20px;
 }
-.login-box input[type="text"], input[type="password"]
-{
+
+.login-box input[type="text"], .login-box input[type="password"] {
     border: none;
     border-bottom: 1px solid #fff;
-    background: transparent;
+    background: #eee;
     outline: none;
     height: 40px;
-    color: #fff;
     font-size: 16px;
 }
-.login-box input[type="submit"]
-{
+
+.login-box input[type="submit"] {
     border: none;
     outline: none;
     height: 40px;
@@ -218,36 +242,37 @@ h1{
     font-size: 18px;
     border-radius: 20px;
 }
-.login-box input[type="submit"]:hover
-{
+
+.login-box input[type="submit"]:hover {
     cursor: pointer;
     background: #39dc79;
     color: #000;
 }
 
-.login-box a{
+.login-box a {
     text-decoration: none;
     font-size: 14px;
     color: #fff;
 }
-.login-box a:hover
-{
+
+.login-box a:hover {
     color: #39dc79;
 }
 
-.register-box{
-    width: 320px;
-    height: 630px;
+.register-box {
+    width: 640px;
+    height: 520px;
     background: rgba(0, 0, 0, 0.5);
     color: #fff;
     top: 50%;
     left: 50%;
     position: absolute;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     box-sizing: border-box;
     padding: 70px 30px;
 }
-.avatar{
+
+.avatar {
     width: 100px;
     height: 100px;
     border-radius: 50%;
@@ -255,33 +280,43 @@ h1{
     top: -50px;
     left: calc(50% - 50px);
 }
-h1{
+
+h1 {
     margin: 0;
     padding: 0 0 20px;
     text-align: center;
     font-size: 22px;
 }
-.register-box p{
+
+.register-box .cont {
+    width: 260px;
+    display: inline-block;
+}
+
+.register-box .cont:nth-child(odd) {
+    margin-right: 55px;
+}
+
+.register-box p {
     margin: 0;
     padding: 0;
     font-weight: bold;
 }
-.register-box input{
+
+.register-box input {
     width: 100%;
-    margin-bottom: 20px;
 }
-.register-box input[type="text"], input[type="password"]
-{
+
+.register-box input[type="text"], .register-box input[type="password"] {
     border: none;
     border-bottom: 1px solid #fff;
-    background: transparent;
+    background: #eee;
     outline: none;
     height: 40px;
-    color: #fff;
     font-size: 16px;
 }
-.register-box input[type="submit"]
-{
+
+.register-box input[type="submit"] {
     border: none;
     outline: none;
     height: 40px;
@@ -290,25 +325,29 @@ h1{
     font-size: 18px;
     border-radius: 20px;
 }
-.register-box input[type="submit"]:hover
-{
+
+.register-box input[type="submit"]:hover {
     cursor: pointer;
     background: #39dc79;
     color: #000;
 }
 
-.register-box a{
+.register-box a {
     text-decoration: none;
     font-size: 14px;
     color: #fff;
 }
-.register-box a:hover
-{
+
+.register-box a:hover {
     color: #39dc79;
 }
 
+.register-box .error {
+    color: pink;
+    font-size: 10px;
+}
 
-.appointment-box{
+.appointment-box {
     width: 320px;
     height: 630px;
     background: #1c8adb;
@@ -316,28 +355,30 @@ h1{
     top: 45%;
     left: 50%;
     position: absolute;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     box-sizing: border-box;
     padding: 50px 40px;
 }
 
-h1{
+h1 {
     margin: 0;
-    padding: -40 0 40px; 
+    padding: -40px 0 40px;
     text-align: center;
     font-size: 24px;
 }
-.appointment-box p{
+
+.appointment-box p {
     margin: 0;
     padding: 0;
     font-weight: bold;
 }
-.appointment-box input{
+
+.appointment-box input {
     width: 100%;
     margin-bottom: 20px;
 }
-.appointment-box input[type="text"], input[type="password"]
-{
+
+.appointment-box input[type="text"], .appointment-box input[type="password"] {
     border: none;
     border-bottom: 1px solid #fff;
     background: transparent;
@@ -346,8 +387,8 @@ h1{
     color: #fff;
     font-size: 16px;
 }
-.appointment-box input[type="submit"]
-{
+
+.appointment-box input[type="submit"] {
     border: none;
     outline: none;
     height: 40px;
@@ -356,126 +397,19 @@ h1{
     font-size: 18px;
     border-radius: 20px;
 }
-.appointment-box input[type="submit"]:hover
-{
+
+.appointment-box input[type="submit"]:hover {
     cursor: pointer;
     background: #39dc79;
     color: #000;
 }
 
-.appointment-box a{
+.appointment-box a {
     text-decoration: none;
     font-size: 14px;
     color: #fff;
 }
-.appointment-box a:hover
-{
+
+.appointment-box a:hover {
     color: #39dc79;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
