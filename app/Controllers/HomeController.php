@@ -8,6 +8,6 @@ class HomeController extends Controller
 {
     public function getHomePage($request)
     {
-        return $this->view('front', []);
+        return $this->view('home', []);
     }
 }
