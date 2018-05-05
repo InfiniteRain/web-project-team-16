@@ -9,6 +9,14 @@ use WebTech\Hospital\Session;
 class LoginController extends Controller
 {
     /**
+     * @return string
+     */
+    public function pageLogin()
+    {
+        return $this->view('login', ['title' => 'Hospital | Login']);
+    }
+
+    /**
      * @param $request
      * @throws \Exception
      */
@@ -16,7 +24,7 @@ class LoginController extends Controller
     {
         $user = User::where('username=?', [$request['username']]);
 
-        $msg = 'This combination of username and password was not found.';
+        $msg = 'Wrong username/password.';
         if (!isset($user[0])) {
             $this->redirectBack(['loginError' => $msg]);
         }
@@ -28,7 +36,7 @@ class LoginController extends Controller
 
         Session::login($user);
 
-        $this->redirectBack();
+        $this->redirect('/');
     }
 
     /**
@@ -39,6 +47,11 @@ class LoginController extends Controller
         Session::logout();
 
         $this->redirect('/');
+    }
+
+    public function pageRegister($request)
+    {
+        return $this->view('register', ['title' => 'Hospital | Register']);
     }
 
     /**
