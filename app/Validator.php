@@ -46,22 +46,12 @@ class Validator
                     ?: "Field {$field} is required.";
             },
             'max:{integer}' => function (string $field, $value, int $length) {
-                if (gettype($value) == 'string') {
-                    return strlen($value) <= $length
-                        ?: "Field {$field} has to be no longer than {$length} characters long.";
-                } else {
-                    return $value <= $length
-                        ?: "Field {$field} has to be less than or equal to {$length}.";
-                }
+                return $value <= $length
+                    ?: "Field {$field} has to be less than or equal to {$length}.";
             },
             'min:{integer}' => function (string $field, $value, int $length) {
-                if (gettype($value) == 'string') {
-                    return strlen($value) >= $length
-                        ?: "Field {$field} has to contain at least {$length} characters.";
-                } else {
-                    return $value >= $length
-                        ?: "Field {$field} has to be more than or equal to {$length}.";
-                }
+                return strlen($value) >= $length
+                    ?: "Field {$field} has to contain at least {$length} characters.";
             },
             'email' => function (string $field, $value) {
                 return filter_var($value, FILTER_VALIDATE_EMAIL) === false
@@ -80,6 +70,22 @@ class Validator
                 $rows = Database::query("SELECT * FROM {$table} WHERE {$column} = ?", [$value]);
                 return count($rows) === 0
                     ?: "Value in the field {$field} is already taken.";
+            },
+            'int' => function(string $field, $value) {
+                return ctype_digit($value)
+                    ?: "Field {$field} has to be an integer.";
+            },
+            'date' => function(string $field, $value) {
+                $format = "Y-m-d";
+                $d = \DateTime::createFromFormat($format, $value);
+                return $d && $d->format($format) == $value
+                    ?: "Field {$field} does not meet the correct format.";
+            },
+            'time' => function(string $field, $value) {
+                $format = "H:i";
+                $d = \DateTime::createFromFormat($format, $value);
+                return $d && $d->format($format) == $value
+                    ?: "Field {$field} does not meet the correct format.";
             }
         ];
 
@@ -97,7 +103,7 @@ class Validator
                 foreach ($this->registeredRules as $registeredRule => $registeredRuleFunction) {
                     $registeredRuleRegex = '/^' . str_replace(
                             ['{integer}', '{double}', '{string}'],
-                            ['(-?\d+)', '(-?(?:\d+|\d*\.\d+))', '([a-zA-Z0-9\s]*)'],
+                            ['(-?\d+)', '(-?(?:\d+|\d*\.\d+))', '([a-zA-Z0-9\s:\-]*)'],
                             $registeredRule
                         ) . '$/';
 

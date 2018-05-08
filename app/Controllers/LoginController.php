@@ -6,14 +6,25 @@ use WebTech\Hospital\Controller;
 use WebTech\Hospital\Models\User;
 use WebTech\Hospital\Session;
 
+/**
+ * Login controller class.
+ *
+ * @author David Lõssenko <lysenkodavid@gmail.com>
+ */
 class LoginController extends Controller
 {
     /**
+     * Gets the login page.
+     *
      * @param $request
      * @return string
      */
     public function pageLogin($request)
     {
+        if (user()) {
+            $this->redirect('/');
+        }
+
         return $this->view('login', [
             'title' => 'Hospital | Login',
             'redirect' => isset($request['r']) ? $request['r'] : null
@@ -21,12 +32,16 @@ class LoginController extends Controller
     }
 
     /**
+     * Logs a user in.
+     *
      * @param $request
      * @throws \Exception
      */
     public function login($request)
     {
-
+        if (user()) {
+            $this->redirect('/');
+        }
 
         $user = User::where('username=?', [$request['username']]);
 
@@ -46,10 +61,16 @@ class LoginController extends Controller
     }
 
     /**
+     * Logs a user out.
+     *
      * @throws \Exception
      */
     public function logout()
     {
+        if (!user()) {
+            $this->redirect('/');
+        }
+
         Session::logout();
 
         $this->redirect('/');
@@ -61,6 +82,8 @@ class LoginController extends Controller
     }
 
     /**
+     * Registers a new user.
+     *
      * @param $request
      * @throws \Exception
      */
@@ -84,6 +107,6 @@ class LoginController extends Controller
         $newUser->type = 3;
         $newUser->save();
 
-        $this->redirectBack(['registerMsg' => "User {$newUser->username} was successfully registered."]);
+        $this->redirectBack(['registerMsg' => 'Registration was successful.']);
     }
 }

@@ -32,7 +32,6 @@
             <span class="psw">
                 <a href="resetpassword.html">Forgot password?</a>
             </span>
-
         </form>
     </div>
 
