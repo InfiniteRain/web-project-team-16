@@ -21,6 +21,9 @@
     <br>
     <div>
         <form action="/login" method="POST">
+            <?php if ($redirect): ?>
+                <input type="hidden" name="redirect" value="<?= $redirect ?>">
+            <?php endif; ?>
             <label>Username:</label>
             <input type="text" name="username" placeholder="Your username">
             <label>Password: </label>
