@@ -9,11 +9,15 @@ use WebTech\Hospital\Session;
 class LoginController extends Controller
 {
     /**
+     * @param $request
      * @return string
      */
-    public function pageLogin()
+    public function pageLogin($request)
     {
-        return $this->view('login', ['title' => 'Hospital | Login']);
+        return $this->view('login', [
+            'title' => 'Hospital | Login',
+            'redirect' => isset($request['r']) ? $request['r'] : null
+        ]);
     }
 
     /**
@@ -22,6 +26,8 @@ class LoginController extends Controller
      */
     public function login($request)
     {
+
+
         $user = User::where('username=?', [$request['username']]);
 
         $msg = 'Wrong username/password.';
@@ -36,7 +42,7 @@ class LoginController extends Controller
 
         Session::login($user);
 
-        $this->redirect('/');
+        $this->redirect(isset($request['redirect']) ? $request['redirect'] : '/');
     }
 
     /**

@@ -20,9 +20,9 @@
     <br><br>
     <div class="content">
         <h2>What do you want to do?</h2>
-        <a href="#" class="btn appointments" id="submission">Book an Appointment</a>
-        <a href="#" class="btn appointments">Show Appointments</a>
-        <a href="#" class="btn profile">Edit Profile</a>
+        <a href="/appointments/book" class="btn appointments" id="submission">Book an Appointment</a>
+        <a href="/appointments/view" class="btn appointments">Show Appointments</a>
+        <a href="/profile" class="btn profile">Edit Profile</a>
     </div>
 </div>
 

@@ -11,3 +11,9 @@ Router::registerPost('/^\/login$/', 'LoginController@login');
 Router::registerGet('/^\/logout$/', 'LoginController@logout');
 Router::registerGet('/^\/register$/', 'LoginController@pageRegister');
 Router::registerPost('/^\/register$/', 'LoginController@register');
+
+Router::registerGet('/^\/profile$/', 'ProfileController@pageProfile');
+Router::registerPost('/^\/profile$/', 'ProfileController@profile');
+
+Router::registerGet('/^\/appointments\/book$/', 'AppointmentController@pageBookAppointment');
+Router::registerGet('/^\/appointments\/view$/', 'AppointmentController@pageViewAppointments');
