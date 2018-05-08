@@ -16,4 +16,11 @@ Router::registerGet('/^\/profile$/', 'ProfileController@pageProfile');
 Router::registerPost('/^\/profile$/', 'ProfileController@profile');
 
 Router::registerGet('/^\/appointments\/book$/', 'AppointmentController@pageBookAppointment');
+Router::registerPost('/^\/appointments\/book$/', 'AppointmentController@bookAppointment');
 Router::registerGet('/^\/appointments\/view$/', 'AppointmentController@pageViewAppointments');
+
+Router::registerGet('/^\/appointments\/(\d+)\/approve$/', 'AppointmentController@approve');
+Router::registerGet('/^\/appointments\/(\d+)\/decline$/', 'AppointmentController@decline');
+Router::registerGet('/^\/appointments\/(\d+)\/edit$/', 'AppointmentController@pageEdit');
+Router::registerPost('/^\/appointments\/(\d+)\/edit$/', 'AppointmentController@edit');
+Router::registerGet('/^\/appointments\/(\d+)\/cancel$/', 'AppointmentController@cancel');

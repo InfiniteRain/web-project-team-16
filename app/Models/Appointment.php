@@ -24,7 +24,9 @@ class Appointment extends Model
         'patient',
         'doctor',
         'approved',
-        'datetime'
+        'decision_made',
+        'datetime',
+        'cancelled'
     ];
 
     /**
