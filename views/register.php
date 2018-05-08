@@ -12,6 +12,12 @@
 <div class="register-box">
     <img src="/assets/img/avatar.png" class="avatar">
 
+    <?php if (isset($registerMsg)): ?>
+        <div style="width:100%; text-align: center;">
+            <b style="color: lime;"><?= $registerMsg ?></b>
+        </div>
+    <?php endif; ?>
+
     <h1>Registration:</h1>
     <br>
     <div>
@@ -69,7 +75,7 @@
                         <span class="error"><?= v_get_error('password') ?></span><br>
                     <?php endif; ?>
                 </label>
-                <input type="text" name="password" placeholder="Your password">
+                <input type="password" name="password" placeholder="Your password">
             </div>
             <div class="cont">
                 <label>
@@ -79,7 +85,7 @@
                         <span class="error"><?= v_get_error('password_confirmation') ?></span><br>
                     <?php endif; ?>
                 </label>
-                <input type="text" name="password_confirmation" placeholder="Repeat your password">
+                <input type="password" name="password_confirmation" placeholder="Repeat your password">
             </div>
 
             <input type="submit" name="submit" value="Register">

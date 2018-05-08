@@ -7,7 +7,7 @@
         <li class="right"><a href="/register">Register</a></li>
     <?php else: ?>
         <li class="right"><a href="/logout">Logout</a></li>
-        <li class="right"><a href="/profile">Profile - <?= user()->username ?></a></li>
+        <li class="right"><a href="/profile">Profile - <?= user()->first_name . ' ' . user()->last_name ?></a></li>
         <?php if (user()->userType()->name === 'admin'): ?>
             <li class="right"><a href="/admin">Admin Panel</a></li>
         <?php endif; ?>
