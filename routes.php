@@ -11,6 +11,10 @@ Router::registerPost('/^\/login$/', 'LoginController@login');
 Router::registerGet('/^\/logout$/', 'LoginController@logout');
 Router::registerGet('/^\/register$/', 'LoginController@pageRegister');
 Router::registerPost('/^\/register$/', 'LoginController@register');
+Router::registerGet('/^\/forgot$/', 'LoginController@pageForgot');
+Router::registerPost('/^\/forgot$/', 'LoginController@forgot');
+Router::registerGet('/^\/forgot\/([a-zA-Z0-9]+)$/', 'LoginController@pageRecover');
+Router::registerPost('/^\/forgot\/([a-zA-Z0-9]+)$/', 'LoginController@recover');
 
 Router::registerGet('/^\/profile$/', 'ProfileController@pageProfile');
 Router::registerPost('/^\/profile$/', 'ProfileController@profile');
