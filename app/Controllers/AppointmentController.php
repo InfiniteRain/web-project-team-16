@@ -173,6 +173,21 @@ class AppointmentController extends Controller
                 }
             }
 
+            if (!empty($request['dt']) && preg_match('/^\d{2}\/\d{2}\/\d{4}$/', $request['dt'])) {
+                $search_date = new \DateTime('@' . strtotime($request['dt']));
+                $search_date->setTime(0, 0, 0);
+
+                $app_date = new \DateTime('@' . strtotime($app->datetime));
+                $app_date->setTime(0, 0, 0);
+
+                $diff = $search_date->diff($app_date);
+                $diffDays = (integer) $diff->format('%R%a');
+
+                if ($diffDays !== 0) {
+                    $failed = true;
+                }
+            }
+
             if (!$failed) {
                 $filtered[] = $app;
             }
@@ -184,6 +199,9 @@ class AppointmentController extends Controller
             'f' => isset($request['f']) ? $request['f'] : '',
             'd' => isset($request['d']) ? $request['d'] : '',
             'c' => isset($request['c']) ? $request['c'] : '',
+            'dt' => isset($request['dt']) && preg_match('/^\d{2}\/\d{2}\/\d{4}$/', $request['dt'])
+                ? $request['dt']
+                : ''
         ]);
     }
 

@@ -30,7 +30,7 @@
             <input type="password" name="password" placeholder="Your password">
             <input type="submit" name="submit" value="Login">
             <span class="psw">
-                <a href="resetpassword.html">Forgot password?</a>
+                <a href="/forgot">Forgot password?</a>
             </span>
         </form>
     </div>

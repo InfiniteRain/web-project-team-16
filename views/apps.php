@@ -14,6 +14,8 @@
     <h1 class="h1-no-center" style="display: inline;">Appointments</h1>
     <div class="right">
         <form action="/appointments/view" method="get">
+            <label for="datepicker">Day:</label>
+            <input id="datepicker" type="text" name="dt" value="<?= $dt ?>">
             <label for="f">Filter:</label>
             <input id="f" type="text" name="f" value="<?= $f ?>">
             <label for="d">Decision:</label>
