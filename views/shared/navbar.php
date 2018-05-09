@@ -9,7 +9,8 @@
         <li class="right"><a href="/logout">Logout</a></li>
         <li class="right"><a href="/profile">Profile - <?= user()->first_name . ' ' . user()->last_name ?></a></li>
         <?php if (user()->userType()->name === 'admin'): ?>
-            <li class="right"><a href="/admin">Admin Panel</a></li>
+            <li class="right"><a href="/users">Admin - Users</a></li>
+            <li class="right"><a href="/appointments/view">Admin - Appointments</a></li>
         <?php endif; ?>
     <?php endif; ?>
 </ul>
