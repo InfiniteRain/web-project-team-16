@@ -12,15 +12,15 @@
 <div>
     <div class="container" id="contact-form">
         <h1>Contact us</h1>
-        <form action="#">
+        <form action="/contact" method="post">
             <label>Name</label>
-            <input type="text"  name="firstname" placeholder="Your name..">
+            <input type="text"  name="name" placeholder="Name">
 
             <label>Email</label>
-            <input type="text" name="Email" placeholder="Your Email..">
+            <input type="text" name="email" placeholder="E-Mail address">
 
             <label>Message</label>
-            <textarea name="Message" placeholder="Write something.." style="height:200px"></textarea>
+            <textarea name="message" placeholder="Your message" style="height:200px"></textarea>
 
             <input type="submit" value="SEND MESSAGE">
         </form>

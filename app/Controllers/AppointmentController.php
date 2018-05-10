@@ -97,6 +97,7 @@ class AppointmentController extends Controller
         $filtered = [];
         foreach ($apps as $app) {
             $failed = false;
+
             if (!empty($request['f'])) {
                 $f = strtolower($request['f']);
                 $dfn = strtolower($app->appointmentDoctor()->first_name);
@@ -107,29 +108,21 @@ class AppointmentController extends Controller
                 switch (user()->userType()->name) {
                     case 'admin':
                         if (
-                            strpos($dfn, $f) === false &&
-                            strpos($dln, $f) === false &&
-                            strpos($pfn, $f) === false &&
-                            strpos($pln, $f) === false
+                            strpos($dfn . ' ' . $dln, $f) === false &&
+                            strpos($pfn . ' ' . $pln, $f) === false
                         ) {
                             $failed = true;
                         }
 
                         break;
                     case 'doctor':
-                        if (
-                            strpos($pfn, $f) === false &&
-                            strpos($pln, $f) === false
-                        ) {
+                        if (strpos($pfn . ' ' . $pln, $f) === false) {
                             $failed = true;
                         }
 
                         break;
                     case 'patient':
-                        if (
-                            strpos($dfn, $f) === false &&
-                            strpos($dln, $f) === false
-                        ) {
+                        if (strpos($dfn . ' ' . $dln, $f) === false) {
                             $failed = true;
                         }
 
@@ -174,16 +167,12 @@ class AppointmentController extends Controller
             }
 
             if (!empty($request['dt']) && preg_match('/^\d{2}\/\d{2}\/\d{4}$/', $request['dt'])) {
-                $search_date = new \DateTime('@' . strtotime($request['dt']));
-                $search_date->setTime(0, 0, 0);
+                $dt = $app->datetime;
+                $y = substr($dt, 0, 4);
+                $m = substr($dt, 5, 2);
+                $d = substr($dt, 8, 2);
 
-                $app_date = new \DateTime('@' . strtotime($app->datetime));
-                $app_date->setTime(0, 0, 0);
-
-                $diff = $search_date->diff($app_date);
-                $diffDays = (integer) $diff->format('%R%a');
-
-                if ($diffDays !== 0) {
+                if ("$m/$d/$y" !== $request['dt']) {
                     $failed = true;
                 }
             }

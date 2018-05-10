@@ -73,7 +73,15 @@
                 <?php else: ?>
                     <td><?= $app->appointmentDoctor()->first_name . ' ' . $app->appointmentDoctor()->last_name ?></td>
                 <?php endif; ?>
-                <td><?= $app->datetime ?></td>
+                <td>
+                <?php
+                    $dt = $app->datetime;
+                    $y = substr($dt, 0, 4);
+                    $m = substr($dt, 5, 2);
+                    $d = substr($dt, 8, 2);
+                    echo "$m/$d/$y";
+                ?>
+                </td>
                 <td>
                     <?php if ($app->decision_made): ?>
                         <?= $app->approved ? 'Yes' : 'No' ?>
