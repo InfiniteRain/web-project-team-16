@@ -10,16 +10,17 @@
 <?php require_once __DIR__ . '/shared/navbar.php'; ?>
 
 <div>
-    <div class="container">
+    <div class="container" id="contact-form">
+        <h1>Contact us</h1>
         <form action="#">
             <label>Name</label>
-            <input type="text" name="name" placeholder="Your name">
+            <input type="text"  name="firstname" placeholder="Your name..">
 
             <label>Email</label>
-            <input type="text" name="email" placeholder="Your E-Mail address">
+            <input type="text" name="Email" placeholder="Your Email..">
 
             <label>Message</label>
-            <textarea name="message" placeholder="Your message" rows="20"></textarea>
+            <textarea name="Message" placeholder="Write something.." style="height:200px"></textarea>
 
             <input type="submit" value="SEND MESSAGE">
         </form>

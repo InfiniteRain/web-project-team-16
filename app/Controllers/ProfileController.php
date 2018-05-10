@@ -20,7 +20,7 @@ class ProfileController extends Controller
     public function pageProfile()
     {
         if (!user()) {
-            $this->redirect('/');
+            $this->redirect('/login?r=' . urlencode('/profile'));
         }
 
         return $this->view('profile');
