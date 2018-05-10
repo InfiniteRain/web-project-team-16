@@ -103,7 +103,7 @@
                             <b>N/A</b>
                         <?php endif; ?>
                     <?php elseif ($ut === 'doctor'): ?>
-                        <?php if (!$app->decision_made): ?>
+                        <?php if (!$app->decision_made && !$app->cancelled): ?>
                             <a href="/appointments/<?= $app->id ?>/approve">Approve</a> |
                             <a href="/appointments/<?= $app->id ?>/decline">Decline</a>
                         <?php else: ?>
