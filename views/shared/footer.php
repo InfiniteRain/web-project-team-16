@@ -3,6 +3,6 @@
     <a href="/">Home</a> |
     <a href="/about">About Us</a> |
     <a href="/contact">Contact Us</a> <br>
-    <span class="contact">Tel: +xxx-xxxxxxx&nbsp;
-      Email:xxx@xxxx.com</span>
+    <span class="contact">Tel: +372-5555-555-HEAL&nbsp;
+      Email: <?= CONFIG['mail_username'] ?></span>
 </footer>
