@@ -46,20 +46,20 @@ class Validator
                     ?: "Field {$field} is required.";
             },
             'max:{integer}' => function (string $field, $value, int $length) {
-                return $value <= $length
+                return $value <= $length || empty($value)
                     ?: "Field {$field} has to be less than or equal to {$length}.";
             },
             'min:{integer}' => function (string $field, $value, int $length) {
-                return strlen($value) >= $length
+                return strlen($value) >= $length || empty($value)
                     ?: "Field {$field} has to contain at least {$length} characters.";
             },
             'email' => function (string $field, $value) {
-                return filter_var($value, FILTER_VALIDATE_EMAIL) === false
+                return filter_var($value, FILTER_VALIDATE_EMAIL) === false && !empty($value)
                     ? "Field {$field} has to contain a valid E-Mail address."
                     : true;
             },
             'alphanumeric' => function (string $field, $value) {
-                return !preg_match('/[^a-z_\-0-9]/i', $value)
+                return !preg_match('/[^a-z_\-0-9]/i', $value) || empty($value)
                     ?: "Field {$field} can contain only numbers, letters, dashes and underscores.";
             },
             'same:{string}' => function (string $field, $value, string $secondField) {
@@ -68,23 +68,23 @@ class Validator
             },
             'unique:{string},{string}' => function (string $field, $value, string $table, string $column) {
                 $rows = Database::query("SELECT * FROM {$table} WHERE {$column} = ?", [$value]);
-                return count($rows) === 0
+                return count($rows) === 0 || empty($value)
                     ?: "Value in the field {$field} is already taken.";
             },
             'int' => function(string $field, $value) {
-                return ctype_digit($value)
+                return ctype_digit($value) || empty($value)
                     ?: "Field {$field} has to be an integer.";
             },
             'date' => function(string $field, $value) {
                 $format = "Y-m-d";
                 $d = \DateTime::createFromFormat($format, $value);
-                return $d && $d->format($format) == $value
+                return $d && $d->format($format) == $value || empty($value)
                     ?: "Field {$field} does not meet the correct format.";
             },
             'time' => function(string $field, $value) {
                 $format = "H:i";
                 $d = \DateTime::createFromFormat($format, $value);
-                return $d && $d->format($format) == $value
+                return $d && $d->format($format) == $value || empty($value)
                     ?: "Field {$field} does not meet the correct format.";
             }
         ];
