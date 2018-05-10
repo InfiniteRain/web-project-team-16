@@ -21,41 +21,29 @@
                 <label>
                     First name:
                 </label>
-                <input type="text" name="first_name" value=""
-                       placeholder="Your first name">
+                <input type="text" name="first_name" value=<?= user()->first_name?>
+                       placeholder="First Name">
             </div>
             <div class="cont">
                 <label>
                     Last name:
                 </label>
-                <input type="text" name="last_name" value=""
-                       placeholder="Your last name">
+                <input type="text" name="last_name" value=<?= user()->last_name?>
+                placeholder="Last Name">
             </div>
             <div class="cont">
                 <label>
                     Username:
                 </label>
-                <input type="text" name="username" value=""
-                       placeholder="Your username">
+                <input type="text" name="username" value=<?= user()->username?>
+                       placeholder="Username">
             </div>
             <div class="cont">
                 <label>
                     E-Mail:
                 </label>
-                <input type="text" name="email" value=""
-                       placeholder="Your E-Mail address">
-            </div>
-            <div class="cont">
-                <label>
-                    Password:
-                </label>
-                <input type="text" name="password" placeholder="Your password">
-            </div>
-            <div class="cont">
-                <label>
-                    Repeat password:
-                </label>
-                <input type="text" name="password_confirmation" placeholder="Repeat your password">
+                <input type="text" name="email" value=<?= user()->email?>
+                       placeholder="Email">
             </div>
 
             <input type="submit" name="submit" value="Confirm">
