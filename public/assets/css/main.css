@@ -54,7 +54,9 @@ td, th {
     position: relative;
     max-width: 800px; /* Maximum width */
     margin: 0 auto; /* Center it */
-
+    -webkit-box-shadow: 0px 0px 13px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 13px 0px rgba(0,0,0,0.75);
+box-shadow: 0px 0px 13px 0px rgba(0,0,0,0.75);
 }
 
 .a-container .content {
@@ -76,6 +78,9 @@ td, th {
     border-radius: 5px;
     background-color: #f2f2f2;
     padding: 20px;
+    -webkit-box-shadow: 0px 0px 13px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 13px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 13px 0px rgba(0,0,0,0.75);
 }
 
 input[type="submit"] {
@@ -132,21 +137,23 @@ input[type=time], select, textarea {
 }
 
 .appointments {
-    background-color: #1c8adb;;
+    background-color: #1c8adb;
+    text-decoration: none;
 }
 
 /* Blue */
 .appointments:hover {
-    background-color: #4665a0;
+    background-color: #39dc79;
 }
 
 .profile {
-    background-color: #1c8adb;;
+    background-color: #1c8adb;
+    text-decoration: none;
 }
 
 /* Green */
 .profile:hover {
-    background-color: gray;
+    background-color: #39dc79;
 }
 
 .Login {
@@ -155,7 +162,7 @@ input[type=time], select, textarea {
 
 /* Blue */
 .Login:hover {
-    background-color: #4665a0;
+    background-color: #39dc79;
 }
 
 .Register {
@@ -164,7 +171,7 @@ input[type=time], select, textarea {
 
 /* Blue */
 .Register:hover {
-    background-color: #4665a0;
+    background-color: #39dc79;
 }
 
 footer {
@@ -176,7 +183,16 @@ footer {
     background-color: white;
     clear: left;
     text-align: center;
+}
 
+footer a {
+	color: #4665a0;
+	text-decoration: none;
+}
+
+footer a:hover {
+	color: #39dc79;
+	text-decoration: underline;
 }
 
 .login-box {
@@ -190,6 +206,9 @@ footer {
     transform: translate(-50%, -50%);
     box-sizing: border-box;
     padding: 70px 30px;
+    -webkit-box-shadow: 0px 0px 13px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 13px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 13px 0px rgba(0,0,0,0.75);
 }
 
 .avatar {
@@ -272,7 +291,6 @@ div.title-box input, div.title-box select {
 .login-box input[type="submit"]:hover {
     cursor: pointer;
     background: #39dc79;
-    color: #000;
 }
 
 .login-box a {
@@ -287,7 +305,6 @@ div.title-box input, div.title-box select {
 
 .register-box {
     width: 640px;
-    height: 520px;
     background: rgba(0, 0, 0, 0.5);
     color: #fff;
     top: 50%;
@@ -296,6 +313,9 @@ div.title-box input, div.title-box select {
     transform: translate(-50%, -50%);
     box-sizing: border-box;
     padding: 70px 30px;
+    -webkit-box-shadow: 0px 0px 13px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 13px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 13px 0px rgba(0,0,0,0.75);
 }
 
 .avatar {
@@ -348,7 +368,6 @@ div.title-box input, div.title-box select {
 .register-box input[type="submit"]:hover {
     cursor: pointer;
     background: #39dc79;
-    color: #000;
 }
 
 .register-box a {
@@ -367,8 +386,8 @@ div.title-box input, div.title-box select {
 }
 
 .appointment-box {
-    width: 320px;
-    height: 480px;
+    margin-top: 50px;
+    width: 600px;
     background: rgba(0, 0, 0, 0.5);
     color: #fff;
     top: 45%;
@@ -377,6 +396,9 @@ div.title-box input, div.title-box select {
     transform: translate(-50%, -50%);
     box-sizing: border-box;
     padding: 50px 40px;
+    -webkit-box-shadow: 0px 0px 13px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 13px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 13px 0px rgba(0,0,0,0.75);
 }
 
 .appointment-box p {
@@ -413,7 +435,6 @@ div.title-box input, div.title-box select {
 .appointment-box input[type="submit"]:hover {
     cursor: pointer;
     background: #39dc79;
-    color: #000;
 }
 
 .appointment-box a {
@@ -432,3 +453,17 @@ div.title-box input, div.title-box select {
     height: 580px;
     overflow-y: scroll;
 }
+
+#contact-form {
+	width: 600px;
+	margin: auto;
+	margin-top: 100px;
+	background: rgba(0, 0, 0, 0.5);
+	color: white;
+}
+
+#contact-form input[type="submit"]:hover {
+	cursor: pointer;
+	background: #39dc79;
+}
+
