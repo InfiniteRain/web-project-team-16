@@ -53,7 +53,9 @@ class User extends Model
         'last_name',
         'email',
         'type',
-        'speciality'
+        'speciality',
+        'recovery_token',
+        'recovery_expires'
     ];
 
     /**

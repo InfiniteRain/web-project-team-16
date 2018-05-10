@@ -48,7 +48,7 @@ class Controller
      */
     public function redirect(string $uri, array $data = [])
     {
-        if (count($data['validationErrors']) > 0) {
+        if (isset($data['validationErrors']) && count($data['validationErrors']) > 0) {
             Session::setRedirectData(array_merge($data, ['oldRequest' => $_REQUEST]));
         } else {
             Session::setRedirectData(array_merge($data));
@@ -65,7 +65,7 @@ class Controller
      */
     public function redirectBack(array $data = [])
     {
-        if (count($data['validationErrors']) > 0) {
+        if (isset($data['validationErrors']) && count($data['validationErrors']) > 0) {
             Session::setRedirectData(array_merge($data, ['oldRequest' => $_REQUEST]));
         } else {
             Session::setRedirectData(array_merge($data));
