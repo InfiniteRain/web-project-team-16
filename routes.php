@@ -17,7 +17,7 @@ Router::registerGet('/^\/forgot\/([a-zA-Z0-9]+)$/', 'LoginController@pageRecover
 Router::registerPost('/^\/forgot\/([a-zA-Z0-9]+)$/', 'LoginController@recover');
 
 Router::registerGet('/^\/profile$/', 'ProfileController@pageProfile');
-Router::registerPost('/^\/profile$/', 'ProfileController@profile');
+Router::registerPost('/^\/profile$/', 'ProfileController@editProfile');
 
 Router::registerGet('/^\/appointments\/book$/', 'AppointmentController@pageBookAppointment');
 Router::registerPost('/^\/appointments\/book$/', 'AppointmentController@bookAppointment');
