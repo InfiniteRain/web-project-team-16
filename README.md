@@ -1,5 +1,12 @@
 # web-project-team-16
+
 Web project of team 16, ICD0007
+
+## Disclaimer
+
+This was a university assignment that me and my team had to work on. The back-end, almost in it's entirety, was written by me. My groupmates were mostly responsible for the front-end stuff, so I did not touch it at all. The structure of the back-end was designed and implemented by me. The the rest of this README served as a quick overview of the back-end's design for my group mates, because we had to defend the work. I'm making this repository public so that if anybody wants to see what we've done, they can.
+
+---
 
 ## Project structure overview
 
@@ -31,7 +38,7 @@ This folder contains views of the website. Basically, the pages that users are g
 
 ### `bootstrap` folder
 
-*NOT TO BE CONFUSED WITH BOOTSTRAP CSS LIBRARY*
+_NOT TO BE CONFUSED WITH BOOTSTRAP CSS LIBRARY_
 
 This folder is used for storing various files for bootstrapping the application. Bootstrapping is basically a set of definite actions (scripts) that are required to be run at the very beginning of the loading process of a web page, otherwise the website will not function properly.
 
@@ -57,7 +64,7 @@ In the old way of doing things, all the different URL's would probably point to 
 
 As was previously stated, routes are defined in the file `routes.php`. If you take a look into this file, you will see that two different methods are used for route registration. Namely, `Router::registerGet` and `Router::registerPost`. As you might have already guessed, method `Router::registerGet` is used to register a route for HTTP method GET, while `Router::registerPost` is used to register a route for HTTP method POST.
 
-Both of these methods accept the same type of arguments. The first argument is the regex (regular expression) string that is used to match the current route with. For example, `/^\/admin$/` will match the route `/admin`, and `/^\/admin\/users\/(\d+)$/` will match the route `/admin/users/<int>` (where `<int>` represents any integer. For example, `/admin/users/10` would match with that regex). The second argument is the controller handle, matching the following format: `<ControllerClassName>@<ControllerClassMethod>`, where `<ControllerClassName>` part is replaced with the name of the controller class, and `<ControllerClassMethod>` is replaced with the method of that class that this route shall invoke. If you don't know what a controller is, don't worry, next section is going to cover that. 
+Both of these methods accept the same type of arguments. The first argument is the regex (regular expression) string that is used to match the current route with. For example, `/^\/admin$/` will match the route `/admin`, and `/^\/admin\/users\/(\d+)$/` will match the route `/admin/users/<int>` (where `<int>` represents any integer. For example, `/admin/users/10` would match with that regex). The second argument is the controller handle, matching the following format: `<ControllerClassName>@<ControllerClassMethod>`, where `<ControllerClassName>` part is replaced with the name of the controller class, and `<ControllerClassMethod>` is replaced with the method of that class that this route shall invoke. If you don't know what a controller is, don't worry, next section is going to cover that.
 
 Final example: `Router::registerGet('/^\/admin\/users\/(\d+)$/', 'AdminController@getUserPage');`
 
@@ -87,7 +94,7 @@ echo 'Last name: ' . $user->last_name . '<br>';
 echo 'User type: ' . $user->userType()->name . '<br>';
 ```
 
-The static method `find` is available to all the model classes. Basically, it looks up the row by the primary key (ID), that is passed as the first argument. If the ID was not found, then an exception is thrown, but if it was found, then that object will get all the row values fetched from the database and turn them into properties of itself, meaning that the data can be accessed as simply as `$user->last_name`. 
+The static method `find` is available to all the model classes. Basically, it looks up the row by the primary key (ID), that is passed as the first argument. If the ID was not found, then an exception is thrown, but if it was found, then that object will get all the row values fetched from the database and turn them into properties of itself, meaning that the data can be accessed as simply as `$user->last_name`.
 
 But that's not all, it's also easy to update the data:
 
@@ -133,43 +140,47 @@ Each method has to return a view which then will be rendered to the visitor. Alo
 
 For example, let's say want to have a home page, the route of which is going to be `/home`. In order to achieve that, we have to do a few things:
 
- 1. Add a route to `routes.php`:
+1.  Add a route to `routes.php`:
     ```php
     <?php
     Router::registerGet('/^\/home$/', 'HomeController@getHomePage');
-    ```  
- 2. Create a controller with the name `HomeController` over at `app/Controllers`:
+    ```
+2.  Create a controller with the name `HomeController` over at `app/Controllers`:
+
     ```php
     <?php
     namespace WebTech\Hospital\Controllers;
-    
+
     use WebTech\Hospital\Controller;
-    
+
     class HomeController extends Controller
     {
-        
+
     }
     ```
- 3. Create the method for our controller that will render the home page view:
+
+3.  Create the method for our controller that will render the home page view:
+
     ```php
     <?php
     namespace WebTech\Hospital\Controllers;
-        
+
     use WebTech\Hospital\Controller;
-    
+
     class HomeController extends Controller
     {
         public function getHomePage($request)
         {
             $welcomeMessage = 'Welcome to our website!';
-            
+
             return $this->view('home', [
                 'welcomeMessage' => $welcomeMessage
             ]);
         }
     }
     ```
- 4. Create the view:
+
+4.  Create the view:
     ```php
     <!doctype html>
     <head>
